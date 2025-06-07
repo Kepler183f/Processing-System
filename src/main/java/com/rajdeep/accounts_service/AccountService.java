@@ -32,4 +32,19 @@ public class AccountService {
         return accountRepository.save(newAccount);
     }
 
+    // Add this new method to your AccountService class
+    public Optional<Account> updateAccount(String accountId, Account updatedAccountDetails) {
+        // First, check if an account with this ID even exists
+        return accountRepository.findById(accountId)
+                .map(existingAccount -> {
+                    // If it exists, update its fields with the new details
+                    existingAccount.setOwnerID(updatedAccountDetails.getOwnerID());
+                    existingAccount.setAccountType(updatedAccountDetails.getAccountType());
+                    existingAccount.setBalance(updatedAccountDetails.getBalance());
+                    // Save the updated account back to the database
+                    return accountRepository.save(existingAccount);
+                });
+    }
+
+
 }
