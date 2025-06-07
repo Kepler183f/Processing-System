@@ -1,12 +1,21 @@
 package com.rajdeep.accounts_service;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Account {
 
+    @Id
     private String accountID;
     private String ownerID;
     private String accountType;
     private Double balance;
 
+    public Account()
+    {
+
+    }
 
     public Account(String accountID, String ownerId, String accountType, Double balance)
     {
