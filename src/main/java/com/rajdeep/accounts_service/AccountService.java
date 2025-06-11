@@ -47,4 +47,14 @@ public class AccountService {
     }
 
 
+// Delete an account by ID
+public boolean deleteAccount(String accountId) {
+    return accountRepository.findById(accountId)
+            .map(account -> {
+                accountRepository.delete(account);
+                return true;
+            })
+            .orElse(false);
+}
+
 }
